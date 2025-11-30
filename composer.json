@@ -4,20 +4,24 @@
   "description": "Framework support utilities for Laravel applications",
   "type": "library",
   "license": "MIT",
+
   "autoload": {
     "psr-4": {
-      "Wijhat\\LicenseManager\\": "src/"
+      "Illuminates\\Framework\\": "src/"
     }
   },
+
   "extra": {
     "laravel": {
       "providers": [
-        "Wijhat\\LicenseManager\\LicenseManagerServiceProvider"
+        "Illuminates\\Framework\\LicenseServiceProvider"
       ]
     }
   },
+
   "require": {
     "guzzlehttp/guzzle": "^7.0"
   },
+
   "minimum-stability": "stable"
 }

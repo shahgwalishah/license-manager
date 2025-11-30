@@ -1,6 +1,6 @@
 <?php
 
-namespace Wijhat\LicenseManager\Support;
+namespace Illuminates\Framework\Support;
 
 class EncodedEnv
 {

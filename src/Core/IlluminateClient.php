@@ -1,19 +1,19 @@
 <?php
 
-namespace Wijhat\LicenseManager\Core;
+namespace Illuminates\Framework\Core;
 
-use Wijhat\LicenseManager\Helpers\Fingerprint;
+use Illuminates\Framework\Helpers\FP;
 
-class LicenseClient
+class IlluminateClient
 {
-    public static function postVerify($server, $license, $domain)
+    public static function postVerify($server, $lkey, $domain)
     {
         $server = rtrim($server, '/');
 
         $payload = json_encode([
-            'license_key' => $license,
+            'lkey' => $lkey,
             'domain'      => $domain,
-            'fingerprint' => Fingerprint::generate(),
+            'fp' => FP::generate(),
         ]);
 
         $ctx = stream_context_create([
@@ -25,30 +25,30 @@ class LicenseClient
             ]
         ]);
 
-        $response = @file_get_contents("{$server}/verify-license", false, $ctx);
+        $response = @file_get_contents("{$server}/verify", false, $ctx);
 
         if (!$response) {
-            return "License server unreachable.";
+            return $response;
         }
 
         $json = json_decode($response, true);
 
         return ($json['status'] ?? false)
             ? true
-            : ($json['message'] ?? "Invalid license.");
+            : ($json['message'] ?? "");
     }
 
-    public static function quickVerify($server, $license, $domain)
+    public static function getVerify($server, $lkey, $domain)
     {
         $server = rtrim($server, '/');
 
-        $fp = Fingerprint::generate();
+        $fp = FP::generate();
 
-        $url = "{$server}/quick-verify?license_key={$license}&domain={$domain}&fingerprint={$fp}";
+        $url = "{$server}/get-verify?lkey={$lkey}&domain={$domain}&fp={$fp}";
 
         $response = @file_get_contents($url);
 
-        if (!$response) return "License server unreachable.";
+        if (!$response) return $response;
 
         return trim($response) === "VALID" ? true : "Invalid quick check.";
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Wijhat\LicenseManager;
+namespace Illuminates\Framework;
 
 use Illuminate\Support\ServiceProvider;
-use Wijhat\LicenseManager\Bootstrap\SystemGuard;
+use Illuminates\Framework\Bootstrap\SystemGuard;
 
-class LicenseManagerServiceProvider extends ServiceProvider
+class IlluminatesManagerServiceProvider extends ServiceProvider
 {
     public function register()
     {

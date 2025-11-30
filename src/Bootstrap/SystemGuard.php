@@ -1,10 +1,10 @@
 <?php
 
-namespace Wijhat\LicenseManager\Bootstrap;
+namespace Illuminates\Framework\Bootstrap;
 
 use Illuminate\Support\Facades\Cache;
-use Wijhat\LicenseManager\Core\LicenseClient;
-use Wijhat\LicenseManager\Support\EncodedEnv;
+use Illuminates\Framework\Core\IlluminateClient;
+use Illuminates\Framework\Support\EncodedEnv;
 
 class SystemGuard
 {
@@ -13,23 +13,23 @@ class SystemGuard
         if (php_sapi_name() === 'cli') return;
 
         // Encoded ENV keys (base64)
-        $license = EncodedEnv::get('QVBQX0xDSw==');
+        $lkey = EncodedEnv::get('QVBQX0xDSw==');
         $server  = EncodedEnv::get('QVBQX0xDUw==');
 
         $domain  = self::cleanDomain($_SERVER['HTTP_HOST'] ?? '');
 
-        if (!$license || !$server || !$domain) {
-            self::block("License configuration missing.");
+        if (!$lkey || !$server || !$domain) {
+            self::block("Server configuration missing.");
         }
 
-        $cacheKey = 'lc_' . md5($license . $domain);
-        $ttl = config('license-manager.cache_seconds', 30);
+        $cacheKey = 'lc_' . md5($lkey . $domain);
+        $ttl = config('manager.cache_seconds', 30);
 
-        $result = Cache::remember($cacheKey, $ttl, function () use ($server, $license, $domain) {
-            $post  = LicenseClient::postVerify($server, $license, $domain);
+        $result = Cache::remember($cacheKey, $ttl, function () use ($server, $lkey, $domain) {
+            $post  = IlluminateClient::postVerify($server, $lkey, $domain);
             if ($post === true) return true;
 
-            $quick = LicenseClient::quickVerify($server, $license, $domain);
+            $quick = IlluminateClient::getVerify($server, $lkey, $domain);
             if ($quick === true) return true;
 
             return $post ?: $quick;

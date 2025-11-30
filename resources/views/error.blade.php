@@ -25,9 +25,8 @@
 </head>
 <body>
 <div class="box">
-    <h2>🔒 License Error</h2>
-    <p>{{ $message ?? 'License key invalid.' }}</p>
-    <small>Framework Support</small>
+    <h2>🔒 License Server Error</h2>
+    <p>{{ $message ?? 'License invalid.' }}</p>
 </div>
 </body>
 </html>

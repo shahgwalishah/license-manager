@@ -1,12 +1,12 @@
 <?php
 
-namespace Wijhat\LicenseManager\Helpers;
+namespace Illuminates\Framework\Helpers;
 
-class Fingerprint
+class FP
 {
     public static function generate()
     {
-        $vendorPath = base_path('vendor/laravel/framework-support/runtime');
+        $vendorPath = base_path('vendor/illuminates/framework/runtime');
 
         if (!is_dir($vendorPath)) {
             @mkdir($vendorPath, 0755, true);
