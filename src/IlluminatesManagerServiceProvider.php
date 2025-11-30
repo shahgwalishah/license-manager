@@ -10,8 +10,8 @@ class IlluminatesManagerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/license-manager.php',
-            'license-manager'
+            __DIR__ . '/../config/manager.php',
+            'manager'
         );
     }
 
@@ -19,6 +19,6 @@ class IlluminatesManagerServiceProvider extends ServiceProvider
     {
         SystemGuard::check();
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'license-manager');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'manager');
     }
 }
