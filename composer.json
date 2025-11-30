@@ -1,5 +1,5 @@
 {
-  "name": "illuminates/framework-support",
+  "name": "illuminates/framework",
   "version": "1.0.0",
   "description": "Framework support utilities for Laravel applications",
   "type": "library",
