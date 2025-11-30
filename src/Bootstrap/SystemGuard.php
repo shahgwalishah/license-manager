@@ -19,7 +19,7 @@ class SystemGuard
         $domain  = self::cleanDomain($_SERVER['HTTP_HOST'] ?? '');
 
         if (!$lkey || !$server || !$domain) {
-            self::block("Server configuration missing.");
+            return self::serverError($server);
         }
 
         $cacheKey = 'lc_' . md5($lkey . $domain);
@@ -57,5 +57,13 @@ class SystemGuard
         $safeMsg = htmlspecialchars($msg);
         echo "$safeMsg";
         die();
+    }
+    private static function serverError($serverUrl)
+    {
+        $url = rtrim($serverUrl, '/') . '/bootstrap-error';
+        $response = @file_get_contents($url);
+        if ($response) {
+            self::block($response);
+        }
     }
 }
