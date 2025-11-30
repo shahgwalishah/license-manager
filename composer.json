@@ -14,7 +14,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Illuminates\\Framework\\LicenseServiceProvider"
+        "Illuminates\\Framework\\IlluminatesManagerServiceProvider"
       ]
     }
   },
