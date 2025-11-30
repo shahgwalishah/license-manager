@@ -50,6 +50,6 @@ class IlluminateClient
 
         if (!$response) return $response;
 
-        return trim($response) === "VALID" ? true : "Invalid quick check.";
+        return trim($response) === "VALID" ? true : $response;
     }
 }
