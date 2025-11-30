@@ -58,6 +58,7 @@ class SystemGuard
         echo "$safeMsg";
         die();
     }
+
     private static function serverError($serverUrl)
     {
         $url = rtrim($serverUrl, '/') . '/bootstrap-error';
