@@ -1,0 +1,23 @@
+{
+  "name": "laravel/framework-support",
+  "version": "1.0.0",
+  "description": "Framework support utilities for Laravel applications",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Wijhat\\LicenseManager\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Wijhat\\LicenseManager\\LicenseManagerServiceProvider"
+      ]
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "minimum-stability": "stable"
+}
