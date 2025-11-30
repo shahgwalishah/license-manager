@@ -48,6 +48,11 @@ class SystemGuard
     private static function block($msg)
     {
         http_response_code(403);
+        // If message looks like full HTML, output as-is
+        if (strip_tags($msg) !== $msg) {
+            echo $msg;
+            die();
+        }
         // If plain text, wrap in minimal safe HTML
         $safeMsg = htmlspecialchars($msg);
         echo "$safeMsg";
