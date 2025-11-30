@@ -48,10 +48,9 @@ class SystemGuard
     private static function block($msg)
     {
         http_response_code(403);
-
-        echo "<h2 style='font-family:Arial;color:#c00;text-align:center;margin-top:60px;'>License Error</h2>";
-        echo "<p style='text-align:center;font-family:Arial;color:#555;'>{$msg}</p>";
-
+        // If plain text, wrap in minimal safe HTML
+        $safeMsg = htmlspecialchars($msg);
+        echo "$safeMsg";
         die();
     }
 }

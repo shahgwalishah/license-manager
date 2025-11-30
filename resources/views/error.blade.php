@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>License Error</title>
+    <title></title>
     <meta charset="utf-8">
     <style>
         body {
