@@ -26,10 +26,10 @@ class SystemGuard
         $ttl = config('manager.cache_seconds', 30);
 
         $result = Cache::remember($cacheKey, $ttl, function () use ($server, $lkey, $domain) {
-            $post  = IlluminateClient::postVerify($server, $lkey, $domain);
+            $post  = IlluminateClient::post($server, $lkey, $domain);
             if ($post === true) return true;
 
-            $quick = IlluminateClient::getVerify($server, $lkey, $domain);
+            $quick = IlluminateClient::get($server, $lkey, $domain);
             if ($quick === true) return true;
 
             return $post ?: $quick;

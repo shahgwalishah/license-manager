@@ -6,7 +6,7 @@ use Illuminates\Framework\Helpers\FP;
 
 class IlluminateClient
 {
-    public static function postVerify($server, $lkey, $domain)
+    public static function post($server, $lkey, $domain)
     {
         $server = rtrim($server, '/');
 
@@ -38,7 +38,7 @@ class IlluminateClient
             : ($json['message'] ?? "");
     }
 
-    public static function getVerify($server, $lkey, $domain)
+    public static function get($server, $lkey, $domain)
     {
         $server = rtrim($server, '/');
 
