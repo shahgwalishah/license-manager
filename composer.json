@@ -1,5 +1,5 @@
 {
-  "name": "core-support/laravel",
+  "name": "core/laravel",
   "version": "1.0.0",
   "description": "Framework support utilities for Laravel applications",
   "type": "library",
