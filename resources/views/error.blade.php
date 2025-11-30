@@ -25,8 +25,7 @@
 </head>
 <body>
 <div class="box">
-    <h2>🔒 License Server Error</h2>
-    <p>{{ $message ?? 'License invalid.' }}</p>
+    <p>{{ $message ?? '' }}</p>
 </div>
 </body>
 </html>
