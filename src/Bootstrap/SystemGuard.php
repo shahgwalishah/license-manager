@@ -17,10 +17,10 @@ class SystemGuard
         $server  = EncodedEnv::get('QVBQX0xDUw==');
 
         if (!$lkey || trim($lkey) === '') {
-            return self::serverError($server);
+            return self::missingEnvError();
         }
         if (!$server || trim($server) === '') {
-            return self::serverError($server);
+            return self::missingEnvError();
         }
 
         $domain  = self::cleanDomain($_SERVER['HTTP_HOST'] ?? '');
@@ -45,6 +45,11 @@ class SystemGuard
         if ($result !== true) {
             self::block($result);
         }
+    }
+
+    private static function missingEnvError()
+    {
+        throw new \RuntimeException();
     }
 
     private static function cleanDomain($host)
