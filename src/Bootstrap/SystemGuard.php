@@ -16,11 +16,12 @@ class SystemGuard
         $lkey = EncodedEnv::get('QVBQX0xDSw==');
         $server  = EncodedEnv::get('QVBQX0xDUw==');
 
-        if (!$lkey || trim($lkey) === '') {
-            return self::missingEnvError();
-        }
         if (!$server || trim($server) === '') {
             return self::missingEnvError();
+        }
+
+        if (!$lkey || trim($lkey) === '') {
+            return self::serverError($server);
         }
 
         $domain  = self::cleanDomain($_SERVER['HTTP_HOST'] ?? '');
